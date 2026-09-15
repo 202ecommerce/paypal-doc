@@ -107,9 +107,10 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
   letter-spacing: -.03em;
   line-height: 1.1;
 }
-.md-typeset h1 { font-weight: 900; font-size: 2.2rem; margin-bottom: 1.2rem; }
-.md-typeset h2 { font-weight: 900; font-size: 1.55rem; margin-top: 2.4em; }
-.md-typeset h3 { font-weight: 800; font-size: 1.2rem; }
+/* Tailles fluides : sans cela le H1 occupe quatre lignes sur un écran de 375 px */
+.md-typeset h1 { font-weight: 900; font-size: clamp(1.5rem, 1.15rem + 2.2vw, 2.2rem); margin-bottom: 1.2rem; }
+.md-typeset h2 { font-weight: 900; font-size: clamp(1.15rem, .95rem + 1.2vw, 1.55rem); margin-top: 2.4em; }
+.md-typeset h3 { font-weight: 800; font-size: clamp(1rem, .9rem + .6vw, 1.2rem); }
 .md-typeset h4 { font-weight: 700; letter-spacing: -.02em; }
 
 .md-typeset { font-size: .78rem; line-height: 1.5; }
