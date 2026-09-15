@@ -319,8 +319,12 @@ for page in PAGES.values():
 # ------------------------------------------------------------- 8. écriture
 for f in DOCS.glob("*.md"):
     f.unlink()
+# La matrice des produits fait 5 colonnes : sans le sommaire de droite, elle tient
+# dans la largeur et n'a plus besoin de défilement horizontal.
+FRONTMATTER = {"general.md": "---\nhide:\n  - toc\n---\n"}
+
 for name, page in sorted(PAGES.items()):
-    txt = "\n\n".join([f"# {page['title']}"] + [p for p in page["body"] if p.strip()])
+    txt = FRONTMATTER.get(name, "") + "\n\n".join([f"# {page['title']}"] + [p for p in page["body"] if p.strip()])
     (DOCS / name).write_text(re.sub(r'\n{3,}', '\n\n', txt).rstrip() + "\n", encoding="utf-8")
     print(f"  {name:32} {len(txt):6} car.")
 print(f"\n{len(RENAME)} images ({sum(1 for v in RENAME.values() if v.endswith('.gif'))} GIF animés), "

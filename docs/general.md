@@ -1,3 +1,7 @@
+---
+hide:
+  - toc
+---
 # Général
 
 ## Êtes-vous client PayPal pour les Professionnels ?

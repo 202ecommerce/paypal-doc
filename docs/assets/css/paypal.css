@@ -133,6 +133,19 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
   font-size: .78rem;              /* Material descend à 10.24px ; on aligne sur le corps de texte */
   line-height: 1.45;
 }
+/* Marges internes resserrées : les tableaux à plusieurs colonnes tiennent
+   dans la largeur au lieu de défiler horizontalement. */
+.md-typeset table:not([class]) :is(th, td) {
+  padding: .5rem .6rem;
+  overflow-wrap: break-word;    /* pas hyphens: auto, qui couperait « Pay-Pal » */
+}
+/* Les URL longues cassent où il faut, sans tiret parasite */
+.md-typeset table:not([class]) a { word-break: break-all; }
+/* Sur un tableau à 4 colonnes ou plus, la colonne des libellés se fait écraser :
+   on lui garantit de quoi tenir sur une ligne. */
+.md-typeset table:not([class]):has(th:nth-child(4)) :is(th, td):first-child {
+  min-width: 9.5em;
+}
 .md-typeset table:not([class]) th {
   background-color: var(--pp-blue-deep);
   color: #FFFFFF;
