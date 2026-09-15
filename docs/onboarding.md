@@ -55,6 +55,7 @@ Il s’agit lors de cette étape de personnaliser les boutons de raccourci PayPa
 ## Première connexion étape 5 : Configuration des statuts de commande et des webhooks
 
 Il s’agit lors de cette étape de personnaliser les boutons de raccourci PayPal.
+
 ![](assets/img/image20.png)
 
 ## Première connexion étape 6 : Restriction IP

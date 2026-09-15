@@ -62,8 +62,11 @@ Si vous utilisez PayPal Checkout, vous pouvez également personnaliser le logo d
 Cette option vous permet d’afficher des éléments de réassurance au sein de votre étape de paiement.
 
 **Rendu du bouton affichant les avantages PayPal**
+
 ![](assets/img/image8.png)
+
 **Rendu du bouton par défaut sur l’étape d’inscription**
+
 ![](assets/img/image9.png)
 
 ## Mettre le bouton PayPal à la fin de la page de commande {#bouton-fin-de-page}
@@ -117,6 +120,7 @@ Ci-dessous les montants de commande minimum et maximum en fonction des pays
 ## Messages « Buy Now Pay Later’ : Faites la promotion du paiement en plusieurs fois {#messages-pay-later}
 
 Faites la promotion du paiement en plusieurs fois au sein de votre site et augmentez votre taux de conversion et la satisfaction de vos clients.
+
 ![](assets/img/image13.png)
 
 **La meilleure manière de choisir ?**
