@@ -1,5 +1,9 @@
 site_name: Module PayPal Officiel pour PrestaShop
 site_description: Documentation utilisateur du module PayPal V6 pour PrestaShop 1.7 et supérieur
+site_url: https://202ecommerce.github.io/paypal-doc/
+repo_url: https://github.com/202ecommerce/paypal-doc
+repo_name: 202ecommerce/paypal-doc
+copyright: Documentation éditée par 202-ecommerce
 docs_dir: docs
 site_dir: site
 

@@ -3,7 +3,9 @@
     "ignoreRules": [
       "clipped-overflow-container"
     ],
-    "ignoreFiles": [],
+    "ignoreFiles": [
+      "site/404.html"
+    ],
     "ignoreValues": [
       {
         "rule": "layout-transition",

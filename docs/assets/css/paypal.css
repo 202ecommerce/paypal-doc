@@ -95,6 +95,16 @@
   background-color: rgba(255, 255, 255, .14);
 }
 
+/* Bloc « dépôt ». Dans le tiroir mobile, Material le peint avec la couleur de
+   texte de l'en-tête — noire ici, sur fond bleu profond : 1,7:1, illisible. */
+.md-nav__source {
+  color: #FFFFFF;
+  padding: .55rem .8rem;
+}
+.md-nav__source .md-source__repository,
+.md-nav__source .md-source__facts { color: #FFFFFF; }
+.md-source { font-size: .72rem; }        /* plancher de lisibilité */
+
 /* ---------- Typographie ---------- */
 
 body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }

@@ -30,10 +30,11 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
+      # --strict : un lien mort ou une page absente de nav: fait échouer le build
       - name: Build site (HTML + PDF)
         env:
           ENABLE_PDF_EXPORT: "1"
-        run: mkdocs build
+        run: mkdocs build --strict
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

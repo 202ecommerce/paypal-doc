@@ -266,7 +266,7 @@ PAGES["index.md"] = {"title": "Documentation utilisateur", "body":
     + ["## Sommaire",
        "\n".join(f"{i}. [{t}]({u})" for i, (t, u) in enumerate(SOMMAIRE, 1)),
        '!!! note "Version PDF"\n    Une version imprimable de cette documentation est disponible ici :'
-       ' [Télécharger le PDF](pdf/documentation-paypal.pdf)']}
+       ' [Télécharger le PDF](https://202ecommerce.github.io/paypal-doc/pdf/documentation-paypal.pdf)']}
 
 # --------------------------------------- 7 bis. encarts « NB / A noter / Attention »
 MARKERS = {"nb": "note", "a noter": "note", "à noter": "note", "attention": "danger"}

@@ -22,4 +22,4 @@ Cette documentation est destinée aux utilisateurs de PrestaShop 1.7 et supérie
 12. [Contact](contact.md)
 
 !!! note "Version PDF"
-    Une version imprimable de cette documentation est disponible ici : [Télécharger le PDF](pdf/documentation-paypal.pdf)
+    Une version imprimable de cette documentation est disponible ici : [Télécharger le PDF](https://202ecommerce.github.io/paypal-doc/pdf/documentation-paypal.pdf)
