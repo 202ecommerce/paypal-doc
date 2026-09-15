@@ -1,0 +1,138 @@
+/* ==========================================================================
+   Charte graphique PayPal
+   Couleurs relevées sur paypal.com (septembre 2026) :
+     #002991  bleu profond    #60CDFF  bleu clair
+     #F1EFEA  crème           #FFC439  or (boutons de paiement)
+   La police de marque « PayPal Pro Text » est propriétaire : Inter sert de
+   substitut (même famille de grotesque géométrique).
+   ========================================================================== */
+
+:root {
+  --pp-blue-deep:  #002991;
+  --pp-blue:       #0070E0;
+  --pp-blue-light: #60CDFF;
+  --pp-cream:      #F1EFEA;
+  --pp-gold:       #FFC439;
+  --pp-ink:        #001435;
+}
+
+/* --- Mode clair : en-tête blanc + logo bleu, comme paypal.com --- */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:         #FFFFFF;
+  --md-primary-fg-color--light:  #FFFFFF;
+  --md-primary-fg-color--dark:   var(--pp-blue-deep);
+  --md-primary-bg-color:         var(--pp-ink);
+  --md-primary-bg-color--light:  #4A5568;
+
+  --md-accent-fg-color:          var(--pp-blue);
+  --md-typeset-a-color:          var(--pp-blue-deep);
+
+  --md-default-bg-color:         #FFFFFF;
+  --md-footer-bg-color:          var(--pp-blue-deep);
+  --md-footer-bg-color--dark:    #001F6E;
+}
+
+/* --- Mode sombre --- */
+[data-md-color-scheme="slate"] {
+  --md-hue: 222;
+  --md-primary-fg-color:         #001F6E;
+  --md-primary-bg-color:         #FFFFFF;
+  --md-accent-fg-color:          var(--pp-blue-light);
+  --md-typeset-a-color:          var(--pp-blue-light);
+  --md-footer-bg-color:          #000D26;
+}
+
+/* L'en-tête blanc a besoin d'une séparation nette du contenu */
+[data-md-color-scheme="default"] .md-header {
+  border-bottom: 1px solid rgba(0, 41, 145, .12);
+  box-shadow: none;
+}
+[data-md-color-scheme="default"] .md-tabs {
+  border-bottom: 1px solid rgba(0, 41, 145, .12);
+}
+
+/* Onglet actif souligné en bleu PayPal */
+.md-tabs__link--active {
+  font-weight: 600;
+  border-bottom: 3px solid var(--pp-blue);
+  padding-bottom: 2px;
+}
+
+.md-header__title { font-weight: 600; }
+.md-header__button.md-logo img { height: 1.5rem; width: auto; }
+
+/* --- Typographie --- */
+.md-typeset h1 {
+  color: var(--pp-blue-deep);
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+[data-md-color-scheme="slate"] .md-typeset h1 { color: var(--pp-blue-light); }
+
+.md-typeset h2 {
+  font-weight: 600;
+  letter-spacing: -.01em;
+  margin-top: 2.2em;
+  padding-top: .6em;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+.md-typeset h3 { font-weight: 600; }
+
+/* --- Captures d'écran du back-office : cadre léger --- */
+.md-typeset img:not(.emojione):not(.twemoji):not(.gemoji) {
+  border: 1px solid rgba(0, 41, 145, .14);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 20, 53, .07);
+  margin: .6rem 0;
+}
+
+/* --- Tableaux --- */
+.md-typeset table:not([class]) th {
+  background-color: var(--pp-blue-deep);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+[data-md-color-scheme="default"] .md-typeset table:not([class]) tr:nth-child(even) {
+  background-color: var(--pp-cream);
+}
+
+/* --- Encarts --- */
+.md-typeset .admonition,
+.md-typeset details {
+  border-width: 0 0 0 4px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 20, 53, .06);
+}
+.md-typeset .admonition.note,
+.md-typeset .admonition.info {
+  border-left-color: var(--pp-blue);
+}
+.md-typeset .note > .admonition-title,
+.md-typeset .info > .admonition-title {
+  background-color: rgba(0, 112, 224, .1);
+}
+/* « Attention » reprend l'or PayPal */
+.md-typeset .admonition.warning { border-left-color: var(--pp-gold); }
+.md-typeset .warning > .admonition-title {
+  background-color: rgba(255, 196, 57, .18);
+}
+
+/* --- Cartes de la page d'accueil --- */
+.md-typeset .grid.cards > ul > li {
+  border: 1px solid rgba(0, 41, 145, .14);
+  border-radius: 12px;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--pp-blue);
+  box-shadow: 0 6px 20px rgba(0, 41, 145, .12);
+  transform: translateY(-2px);
+}
+
+/* --- Pied de page --- */
+.md-footer-meta { background-color: var(--md-footer-bg-color--dark, #001F6E); }
+
+/* Le logo PayPal est bleu foncé : version blanche sur l'en-tête sombre */
+[data-md-color-scheme="slate"] .md-header__button.md-logo img {
+  filter: brightness(0) invert(1);
+}

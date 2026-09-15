@@ -1,42 +1,85 @@
-site_name: Documentation fonctionnelle – Module PayPal PrestaShop
-site_description: Guide fonctionnel du module PayPal pour PrestaShop
+site_name: Module PayPal Officiel pour PrestaShop
+site_description: Documentation utilisateur du module PayPal V6 pour PrestaShop 1.7 et supérieur
 docs_dir: docs
 site_dir: site
+
 theme:
   name: material
   language: fr
+  logo: assets/logo-paypal.png
+  favicon: assets/logo-paypal.png
+  font:
+    text: Inter
+    code: Roboto Mono
   palette:
-    primary: indigo
-    accent: indigo
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Passer en mode sombre
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Passer en mode clair
   features:
     - navigation.tabs
     - navigation.sections
     - navigation.top
+    - navigation.indexes
+    - navigation.tracking
+    - toc.follow
     - search.suggest
+    - search.highlight
     - content.code.copy
   icon:
     repo: fontawesome/brands/github
 
+extra_css:
+  - assets/css/paypal.css
+
 nav:
   - Accueil: index.md
-  - Moyens de paiement: moyens-paiement.md
+  - Démarrer:
+      - Général: general.md
+      - Installation et prise en main: installation.md
+      - Onboarding: onboarding.md
   - Configuration: configuration.md
-  - Parcours client: tunnel-paiement.md
-  - Remboursements et annulations: remboursements.md
+  - Exploitation:
+      - Remboursements: remboursements.md
+      - Utilisation du module: utilisation.md
+  - Référence:
+      - Spécificités par pays: specificites-pays.md
+      - Pré-requis: prerequis.md
+      - Contact: contact.md
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - md_in_html
   - tables
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - toc:
       permalink: true
+      permalink_title: Lien vers cette section
 
 plugins:
-  - search
+  - search:
+      lang: fr
   - with-pdf:
       output_path: pdf/documentation-paypal.pdf
-      cover_title: Documentation fonctionnelle – Module PayPal PrestaShop
-      cover_subtitle: Guide utilisateur
+      cover_title: Documentation utilisateur – Module PayPal Officiel
+      cover_subtitle: Module PayPal V6.X pour PrestaShop V1.7.X et supérieur
       toc_title: Sommaire
       author: 202ecommerce
-      cover_logo: null
+      cover_logo: docs/assets/logo-paypal.png
       enabled_if_env: ENABLE_PDF_EXPORT

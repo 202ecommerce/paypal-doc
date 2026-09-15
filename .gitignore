@@ -1,0 +1,15 @@
+# Environnement Python local
+.venv/
+__pycache__/
+
+# Build MkDocs
+site/
+
+# Config de dev local
+mkdocs.local.yml
+
+# macOS
+.DS_Store
+
+# Config outil local
+.claude/
