@@ -68,8 +68,14 @@
   content: url("../logo-paypal-blanc.png");
 }
 
-/* Onglets : pilules, à la PayPal */
+/* Onglets : pilules, à la PayPal.
+   Material cale le lien en haut du <li> ; on le recentre, sinon la pilule
+   flotte dans le haut de la barre. */
 .md-tabs__list { padding: .2rem 0; }
+.md-tabs__item {
+  display: flex;
+  align-items: center;
+}
 .md-tabs__link {
   font-weight: 500;
   opacity: 1;
@@ -79,12 +85,13 @@
   transition: background-color .2s;
 }
 .md-tabs__link:hover { background-color: rgba(5, 55, 130, .08); }
-.md-tabs__link--active {
+/* Material 9 porte le marqueur actif sur le <li>, pas sur le lien */
+.md-tabs__item--active > .md-tabs__link {
   font-weight: 700;
   background-color: rgba(5, 55, 130, .08);
 }
 [data-md-color-scheme="slate"] .md-tabs__link:hover,
-[data-md-color-scheme="slate"] .md-tabs__link--active {
+[data-md-color-scheme="slate"] .md-tabs__item--active > .md-tabs__link {
   background-color: rgba(255, 255, 255, .14);
 }
 
