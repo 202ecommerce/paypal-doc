@@ -9,7 +9,7 @@ theme:
   logo: assets/logo-paypal.png
   favicon: assets/logo-paypal.png
   font:
-    text: Inter
+    text: Archivo
     code: Roboto Mono
   palette:
     - media: "(prefers-color-scheme: light)"

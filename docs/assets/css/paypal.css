@@ -6,11 +6,12 @@
    Titres     noir, graisse 900, interlettrage -0.03em, interligne 1.1
    Corps      noir, 16px / 24px
    Boutons    pilule (radius 1000px), graisse 700
-   Typo       « PayPal Pro » / « PayPal Pro Text VF » sont propriétaires :
-              Inter sert de substitut (grotesque géométrique, graisses 400-900).
+   Typo       « PayPal Pro » / « PayPal Pro Text VF » sont propriétaires. Archivo sert
+              de substitut : grotesque au dessin proche, graisses 400 à 900, et
+              suffisamment peu répandue pour ne pas banaliser l'interface.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   --pp-blue-deep:  #002991;
@@ -120,6 +121,8 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
   border: 1px solid rgba(0, 0, 0, .1);
   border-radius: var(--pp-radius);
   overflow: hidden;
+  font-size: .78rem;              /* Material descend à 10.24px ; on aligne sur le corps de texte */
+  line-height: 1.45;
 }
 .md-typeset table:not([class]) th {
   background-color: var(--pp-blue-deep);
@@ -136,23 +139,28 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
 .md-typeset .admonition,
 .md-typeset details {
   border: 1px solid rgba(0, 0, 0, .1);
-  border-left-width: 4px;
   border-radius: var(--pp-radius);
   box-shadow: none;
   font-size: .75rem;
 }
-.md-typeset .admonition-title { font-weight: 700; }
+.md-typeset .admonition-title {
+  font-weight: 700;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, .07);
+  margin-bottom: .6rem;
+}
+.md-typeset .admonition-title::before { background-color: currentcolor; }
 
-.md-typeset .admonition.note,
-.md-typeset .admonition.info    { border-left-color: var(--pp-blue); }
-.md-typeset .note > .admonition-title,
-.md-typeset .info > .admonition-title { background-color: rgba(0, 112, 224, .08); }
+.md-typeset .admonition.note   > .admonition-title,
+.md-typeset .admonition.info   > .admonition-title { color: var(--pp-blue-deep); }
+.md-typeset .admonition.tip    > .admonition-title { color: var(--pp-blue); }
+.md-typeset .admonition.warning > .admonition-title { color: #8A6100; }
+.md-typeset .admonition.danger  > .admonition-title { color: #B3261E; }
 
-.md-typeset .admonition.tip     { border-left-color: var(--pp-blue-light); }
-.md-typeset .tip > .admonition-title  { background-color: rgba(96, 205, 255, .16); }
-
-.md-typeset .admonition.warning { border-left-color: var(--pp-gold); }
-.md-typeset .warning > .admonition-title { background-color: rgba(255, 196, 57, .18); }
+[data-md-color-scheme="slate"] .md-typeset .admonition.note > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .admonition.info > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .admonition.tip  > .admonition-title { color: var(--pp-blue-light); }
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning > .admonition-title { color: var(--pp-gold); }
 
 /* ---------- Cartes ---------- */
 
@@ -164,7 +172,7 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
 }
 .md-typeset .grid.cards > ul > li:hover {
   border-color: var(--pp-blue);
-  box-shadow: 0 4px 16px rgba(0, 41, 145, .1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
 }
 
 /* ---------- Boutons ---------- */
@@ -188,3 +196,9 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
 /* ---------- Pied de page ---------- */
 
 .md-footer-meta { background-color: var(--md-footer-bg-color--dark, #001F6E); }
+.md-footer-meta__inner { padding: 1rem .8rem; }
+.md-copyright,
+.md-copyright *,
+.md-footer-copyright,
+.md-search-result__meta,
+.md-skip { font-size: .72rem; }        /* plancher de lisibilité : 11px */

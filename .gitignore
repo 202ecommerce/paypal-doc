@@ -16,3 +16,6 @@ mkdocs.local.yml
 
 # Export du Google Doc, réimporté à la demande
 tools/export/
+
+# Config locale du détecteur impeccable (la config partagée est versionnée)
+.impeccable/config.local.json

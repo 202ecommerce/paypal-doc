@@ -73,6 +73,23 @@ répare les en-têtes de tableaux, renomme les images et convertit les blocs
 Toute correction faite à la main dans `docs/` sera écrasée : corriger le Google Doc,
 puis réimporter.
 
+## Contrôle qualité du design
+
+Le dépôt utilise [impeccable](https://impeccable.style) pour détecter les anti-patterns
+d'interface. Les règles ignorées sont partagées dans `.impeccable/config.json`.
+
+Installation (non versionnée, 14 Mo de binaires) :
+
+```bash
+npx impeccable install
+```
+
+Lancer le détecteur sur le site généré :
+
+```bash
+.claude/skills/impeccable/scripts/impeccable detect site/ docs/assets/css/paypal.css
+```
+
 ## Déploiement
 
 Le workflow `.github/workflows/docs.yml` build le site (HTML + PDF) et le publie
