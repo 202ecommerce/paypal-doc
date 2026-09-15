@@ -62,8 +62,10 @@
 
 .md-header__title { font-weight: 700; letter-spacing: -.01em; }
 .md-header__button.md-logo img { height: 1.6rem; width: auto; }
+/* Sur fond sombre, PayPal prescrit la version réservée blanche du logo.
+   Un filtre ne convient pas : il écraserait le bichromatisme bleu du logo. */
 [data-md-color-scheme="slate"] .md-header__button.md-logo img {
-  filter: brightness(0) invert(1);   /* logo blanc sur en-tête sombre */
+  content: url("../logo-paypal-blanc.png");
 }
 
 /* Onglets : pilules, à la PayPal */
