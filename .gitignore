@@ -13,3 +13,6 @@ mkdocs.local.yml
 
 # Config outil local
 .claude/
+
+# Export du Google Doc, réimporté à la demande
+tools/export/

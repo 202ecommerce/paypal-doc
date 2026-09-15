@@ -41,14 +41,37 @@ ENABLE_PDF_EXPORT=1 .venv/bin/mkdocs build
 
 | Chemin | Rôle |
 | --- | --- |
-| `docs/` | Les pages Markdown |
-| `docs/assets/img/` | Captures d'écran du back-office |
+| `docs/` | Les pages Markdown, une par chapitre du document source |
+| `docs/assets/img/` | Captures d'écran et GIF de démonstration du back-office |
 | `docs/assets/css/paypal.css` | Charte graphique PayPal (couleurs, typographie, composants) |
 | `mkdocs.yml` | Configuration du site et arborescence de navigation (`nav:`) |
 | `mkdocs.local.yml` | Surcharge de dev local, non versionnée |
+| `tools/import-google-doc.py` | Ré-import du contenu depuis le Google Doc |
 
 Pour ajouter une page : créer le fichier `.md` dans `docs/`, **puis la déclarer dans la
 section `nav:` de `mkdocs.yml`** — sans quoi elle n'apparaîtra pas dans le menu.
+
+## Mettre à jour le contenu depuis le Google Doc
+
+Le contenu provient d'un Google Doc. Pour le réimporter après une modification :
+
+1. Dans le Google Doc : **Fichier > Télécharger > Page Web (.html, compressé)**.
+   C'est le seul export qui conserve les **GIF animés** et la résolution d'origine des
+   images — l'export Markdown les aplatit en PNG et les redimensionne à 605 px.
+2. Décompresser le zip dans `tools/export/`.
+3. Lancer :
+
+```bash
+.venv/bin/python tools/import-google-doc.py
+```
+
+Le script régénère l'intégralité de `docs/` : il résout les emphases portées par des
+classes CSS, déballe les liens du redirecteur Google, remet les titres à leur niveau,
+répare les en-têtes de tableaux, renomme les images et convertit les blocs
+« NB / A noter / Attention » en encarts. **Le texte n'est jamais reformulé.**
+
+Toute correction faite à la main dans `docs/` sera écrasée : corriger le Google Doc,
+puis réimporter.
 
 ## Déploiement
 

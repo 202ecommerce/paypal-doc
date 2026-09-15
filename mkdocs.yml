@@ -44,18 +44,20 @@ extra_css:
 
 nav:
   - Accueil: index.md
-  - Démarrer:
-      - Général: general.md
-      - Installation et prise en main: installation.md
-      - Onboarding: onboarding.md
-  - Configuration: configuration.md
-  - Exploitation:
-      - Remboursements: remboursements.md
-      - Utilisation du module: utilisation.md
-  - Référence:
-      - Spécificités par pays: specificites-pays.md
-      - Pré-requis: prerequis.md
-      - Contact: contact.md
+  - Général: general.md
+  - Fonctionnalités communes:
+      - Installation du module: installation.md
+      - Naviguer dans la page de configuration: navigation.md
+      - Configurations disponibles: configuration.md
+      - On Boarding: onboarding.md
+      - Remboursement d’une transaction: remboursements.md
+  - Fonctionnalités par pays:
+      - Allemagne: specificites-allemagne.md
+      - USA: specificites-usa.md
+      - Mexique / Brésil: specificites-mexique-bresil.md
+  - Utilisation: utilisation.md
+  - Pré-requis: prerequis.md
+  - Contact: contact.md
 
 markdown_extensions:
   - admonition
