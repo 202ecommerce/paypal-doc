@@ -134,6 +134,10 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
   border-radius: var(--pp-radius);
   margin: 1rem 0;
 }
+/* Sur fond sombre, une bordure noire ne délimite plus rien */
+[data-md-color-scheme="slate"] .md-typeset img:not(.emojione):not(.twemoji):not(.gemoji) {
+  border-color: rgba(255, 255, 255, .18);
+}
 
 /* ---------- Tableaux ---------- */
 
@@ -194,6 +198,8 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
 [data-md-color-scheme="slate"] .md-typeset .admonition.info > .admonition-title,
 [data-md-color-scheme="slate"] .md-typeset .admonition.tip  > .admonition-title { color: var(--pp-blue-light); }
 [data-md-color-scheme="slate"] .md-typeset .admonition.warning > .admonition-title { color: var(--pp-gold); }
+/* Le rouge foncé tombe à 2,44:1 sur fond sombre */
+[data-md-color-scheme="slate"] .md-typeset .admonition.danger > .admonition-title { color: #FF8A80; }
 
 /* ---------- Cartes ---------- */
 
