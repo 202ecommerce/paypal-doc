@@ -105,6 +105,99 @@
 .md-nav__source .md-source__facts { color: #FFFFFF; }
 .md-source { font-size: .72rem; }        /* plancher de lisibilité */
 
+/* ---------- Navigation latérale ----------
+   Trois niveaux à distinguer : le chapitre, ses pages, et les sections de la
+   page ouverte. Sans traitement, tout se ressemble et on ne sait plus où on est. */
+
+/* 1. Le chapitre : un intitulé de rubrique, pas un lien */
+.md-sidebar--primary .md-nav__item--section > .md-nav__link:first-of-type {
+  color: var(--md-default-fg-color--light);
+  font-size: .7rem;            /* plancher de lisibilité : 11px */
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+}
+
+/* 2. Les pages du chapitre */
+.md-sidebar--primary .md-nav__item > .md-nav__link {
+  border-radius: 8px;
+  padding: .45rem .6rem;       /* >= 8px : le tiroir mobile borde chaque entrée */
+  margin: .1rem 0;
+  transition: background-color .15s;
+}
+.md-sidebar--primary .md-nav__item > .md-nav__link:hover {
+  background-color: rgba(5, 55, 130, .06);
+}
+.md-sidebar--primary .md-nav__item--active > .md-nav__link:not(.md-nav__link--index) {
+  font-weight: 700;
+}
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item > .md-nav__link:hover {
+  background-color: rgba(255, 255, 255, .07);
+}
+
+/* 3. Les sections de la page ouverte : regroupées dans leur propre encart,
+      pour qu'on voie d'un coup d'œil où finit la liste des pages */
+.md-sidebar--primary .md-nav--secondary {
+  background-color: var(--pp-cream);
+  border: 1px solid rgba(0, 0, 0, .08);
+  border-radius: var(--pp-radius);
+  padding: .6rem;
+  margin: .35rem 0 .6rem;
+}
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav--secondary {
+  background-color: rgba(255, 255, 255, .04);
+  border-color: rgba(255, 255, 255, .1);
+}
+.md-sidebar--primary .md-nav--secondary .md-nav__link {
+  font-size: .72rem;           /* plancher de lisibilité : 11px */
+  line-height: 1.35;
+  padding: .3rem .45rem;
+  color: var(--md-default-fg-color--light);
+}
+.md-sidebar--primary .md-nav--secondary .md-nav__link:hover {
+  color: var(--md-accent-fg-color);
+  background-color: transparent;
+}
+.md-sidebar--primary .md-nav--secondary .md-nav__link--active {
+  color: var(--md-typeset-a-color);
+  font-weight: 700;
+}
+/* les sous-sections de niveau 3 : un simple retrait, pas un second encart */
+.md-sidebar--primary .md-nav--secondary .md-nav .md-nav {
+  border-left: 1px solid rgba(0, 0, 0, .1);
+  margin-left: .45rem;
+  padding: .1rem 0 .1rem .45rem;
+}
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav--secondary .md-nav .md-nav {
+  border-left-color: rgba(255, 255, 255, .14);
+}
+
+/* Dans le tiroir mobile, Material sépare chaque entrée par un filet, contre
+   lequel les entrées viennent buter. Les pastilles au survol et l'encart du
+   sommaire jouent déjà ce rôle : on retire les filets et on aère la liste. */
+/* Hors requête média : en desktop Material ne pose pas ce filet, le retirer
+   inconditionnellement ne change donc rien là-bas. */
+.md-nav--primary .md-nav__item { border-top: none; }
+.md-nav--primary .md-nav__list { padding: .4rem; }          /* >= 8px sur les 4 côtés */
+/* La liste du tiroir est un conteneur de défilement (flex:1) : la dernière
+   entrée atteint sinon le bas de la zone scrollable. */
+.md-nav--primary .md-nav__list > .md-nav__item:last-child { margin-bottom: .4rem; }
+
+/* La colonne de droite ayant disparu, la grille s'élargit et la navigation
+   respire : les intitulés de sections français sont longs. */
+@media screen and (min-width: 76.25em) {
+  .md-grid { max-width: 68rem; }
+  .md-sidebar--primary { width: 15rem; }
+}
+
+/* Le texte occupait toute la largeur libérée : au-delà de 80 caractères par
+   ligne l'œil décroche en fin de ligne. Seul le texte est bridé — tableaux,
+   captures et encarts gardent la pleine largeur. */
+.md-typeset > :is(p, ul, ol, blockquote, h1, h2, h3, h4, h5, h6) {
+  max-width: 32rem;            /* ~80 caractères par ligne */
+}
+
 /* ---------- Typographie ---------- */
 
 body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
