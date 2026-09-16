@@ -1,7 +1,9 @@
-# Mexico and Brazil-specific features
+# Mexico / Brazil-specific features
 
-!!! warning "Translation pending"
-    This page is a placeholder. The English content has not been written yet —
-    the reference documentation is currently available in French only.
+PayPal account vaulting + card vaulting
 
-    [Read this page in French](../../specificites-mexique-bresil/)
+PayPal Plus
+
+Installment payments
+
+=> Prerequisite: the localization settings must be set to Germany, otherwise the payment options will not be offered

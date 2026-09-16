@@ -1,7 +1,7 @@
 # Using the module
 
-!!! warning "Translation pending"
-    This page is a placeholder. The English content has not been written yet —
-    the reference documentation is currently available in French only.
+Once configuration is complete and the IP restriction has been removed, the payment method is active in your checkout funnel.
 
-    [Read this page in French](../../utilisation/)
+Make sure you have connected your module in production mode, and you are ready to receive payments.
+
+[You can contact us at any time if you run into difficulties; we will be delighted to answer your questions.](https://addons.prestashop.com/fr/contactez-nous?id_product=1748)

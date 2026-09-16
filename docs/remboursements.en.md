@@ -1,7 +1,7 @@
 # Refunding a transaction
 
-!!! warning "Translation pending"
-    This page is a placeholder. The English content has not been written yet —
-    the reference documentation is currently available in French only.
+After an order has been placed, you can refund all or part of the order from the native PrestaShop refund screen.
 
-    [Read this page in French](../../remboursements/)
+The refund will be sent directly to PayPal and your customer will be refunded.
+
+![Refund screen in the PrestaShop back office](assets/img/en/remboursement-back-office.png){ loading=lazy }

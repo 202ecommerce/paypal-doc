@@ -7,10 +7,16 @@ from markdownify import markdownify
 from markdown.extensions.toc import slugify
 
 # Usage : décompresser l'export « Page Web (.html, compressé) » du Google Doc
-#         dans tools/export/, puis lancer depuis la racine du dépôt :
-#             .venv/bin/python tools/import-google-doc.py
-SRC  = pathlib.Path(__file__).parent / "export"
-HTML = SRC / "FRModulePayPalDocumentationModulePrestaShop.html"
+#         dans tools/export/<langue>/, puis lancer depuis la racine du dépôt :
+#             .venv/bin/python tools/import-google-doc.py fr
+#             .venv/bin/python tools/import-google-doc.py en
+import sys
+LANGUE = (sys.argv[1] if len(sys.argv) > 1 else "fr").lower()
+if LANGUE not in ("fr", "en"):
+    sys.exit("langue inconnue : attendu fr ou en")
+SUFFIXE = "" if LANGUE == "fr" else "." + LANGUE          # docs/page.md / docs/page.en.md
+SRC  = pathlib.Path(__file__).parent / "export" / LANGUE
+HTML = next(SRC.glob("*.html"))
 DOCS = pathlib.Path("docs")
 IMG  = DOCS / "assets" / "img"
 
@@ -75,8 +81,15 @@ for td in soup.find_all("td"):
         para.unwrap()
 
 # ---------------------------------------------------------------- 3. images
-SKIP = {"image22.png", "image15.png"}      # logo (déjà logo du site) et filet décoratif
-RENAME = {
+# Les GIF de l'export anglais sont les mêmes enregistrements d'écran français,
+# réencodés 7x plus lourds (71 Mo contre 10). On réutilise donc les fichiers
+# français : contenu identique, poids divisé par sept.
+GIFS = {
+    "installation-module.gif", "paiement-paypal.gif", "pay-later-activation.gif",
+    "pay-later-messages.gif", "personnalisation-shortcuts.gif",
+}
+RENOMMAGE = {
+ "fr": {
     "image18.gif": "installation-module.gif",      "image2.png":  "page-configuration.png",
     "image7.png":  "mode-prelevement.png",         "image20.gif": "paiement-paypal.gif",
     "image23.png": "shortcut-page-produit.png",    "image17.png": "shortcut-page-panier.png",
@@ -88,8 +101,25 @@ RENAME = {
     "image4.png":  "onboarding-2-checkout.png",    "image5.png":  "onboarding-3-pay-later.png",
     "image19.png": "onboarding-4-boutons.png",     "image24.png": "onboarding-5-statuts.png",
     "image9.png":  "onboarding-6-restriction-ip.png", "image21.png": "remboursement-back-office.png",
+ },
+ "en": {
+    "image6.gif":  "installation-module.gif",      "image5.png":  "page-configuration.png",
+    "image3.png":  "mode-prelevement.png",         "image8.gif":  "paiement-paypal.gif",
+    "image7.png":  "shortcut-page-produit.png",    "image10.png": "shortcut-page-panier.png",
+    "image9.png":  "shortcut-inscription.png",     "image12.png": "avantages-paypal-bouton.png",
+    "image11.png": "avantages-paypal-inscription.png", "image15.png": "bouton-dans-page-commande.png",
+    "image13.png": "bouton-fin-de-page.png",       "image14.gif": "pay-later-activation.gif",
+    "image16.gif": "pay-later-messages.gif",       "image17.gif": "personnalisation-shortcuts.gif",
+    "image18.png": "onboarding-1-connexion.png",   "image20.png": "onboarding-1-code-compte.png",
+    "image21.png": "onboarding-2-checkout.png",    "image22.png": "onboarding-3-pay-later.png",
+    "image23.png": "onboarding-4-boutons.png",     "image24.png": "onboarding-5-statuts.png",
+    "image1.png":  "onboarding-6-restriction-ip.png", "image2.png":  "remboursement-back-office.png",
+ },
 }
-LEGEND = {
+RENAME = RENOMMAGE[LANGUE]
+
+LEGENDES = {
+ "fr": {
     "installation-module.gif": "Installation du module depuis le back-office PrestaShop",
     "page-configuration.png": "Page de configuration du module PayPal",
     "mode-prelevement.png": "Réglage du mode de prélèvement",
@@ -112,30 +142,84 @@ LEGEND = {
     "onboarding-5-statuts.png": "Étape 5 — statuts de commande et webhooks",
     "onboarding-6-restriction-ip.png": "Étape 6 — restriction IP",
     "remboursement-back-office.png": "Écran de remboursement du back-office PrestaShop",
+ },
+ "en": {
+    "installation-module.gif": "Installing the module from the PrestaShop back office",
+    "page-configuration.png": "PayPal module configuration page",
+    "mode-prelevement.png": "Payment collection mode setting",
+    "paiement-paypal.gif": "‘In-context’ and ‘Redirect’ payment modes",
+    "shortcut-page-produit.png": "PayPal Express Checkout button on a product page",
+    "shortcut-page-panier.png": "PayPal Express Checkout button on the cart page",
+    "shortcut-inscription.png": "PayPal Express Checkout button at the sign-up step",
+    "avantages-paypal-bouton.png": "Button showing the PayPal benefits",
+    "avantages-paypal-inscription.png": "Default button at the sign-up step",
+    "bouton-dans-page-commande.png": "Payment button inside the checkout page",
+    "bouton-fin-de-page.png": "Payment button at the bottom of the checkout page",
+    "pay-later-activation.gif": "Enabling the ‘Buy Now Pay Later’ button",
+    "pay-later-messages.gif": "Configuring the ‘Buy Now Pay Later’ messages",
+    "personnalisation-shortcuts.gif": "Customizing the PayPal Express Checkout shortcuts",
+    "onboarding-1-connexion.png": "Step 1 — signing in to the PayPal Business account",
+    "onboarding-1-code-compte.png": "Step 1 — account connection code",
+    "onboarding-2-checkout.png": "Step 2 — checkout configuration",
+    "onboarding-3-pay-later.png": "Step 3 — installment payments",
+    "onboarding-4-boutons.png": "Step 4 — customizing the shortcut buttons",
+    "onboarding-5-statuts.png": "Step 5 — order statuses and webhooks",
+    "onboarding-6-restriction-ip.png": "Step 6 — IP restriction",
+    "remboursement-back-office.png": "Refund screen in the PrestaShop back office",
+ },
 }
-if IMG.exists():
-    shutil.rmtree(IMG)
-IMG.mkdir(parents=True)
+LEGEND = LEGENDES[LANGUE]
+
+# les captures sont propres à chaque langue, les GIF sont mutualisés
+DOSSIER_IMG = IMG if LANGUE == "fr" else IMG / LANGUE
+CHEMIN_IMG = (lambda nom: f"assets/img/{nom}" if nom in GIFS
+              else f"assets/img/{'' if LANGUE == 'fr' else LANGUE + '/'}{nom}")
+
+DOSSIER_IMG.mkdir(parents=True, exist_ok=True)
+copiees = 0
 for old, new in RENAME.items():
-    shutil.copy(SRC / "images" / old, IMG / new)
+    if LANGUE != "fr" and new in GIFS:
+        continue                      # GIF mutualisé avec le français
+    shutil.copy(SRC / "images" / old, DOSSIER_IMG / new)
+    copiees += 1
 
 # ------------------------------------------------------- 4. routage des pages
-ROUTE_H2 = {
-    "Installation du module PayPal Officiel":            "installation.md",
-    "Naviguer dans votre page de configuration":         "navigation.md",
-    "Configurations disponibles dans le module PayPal Officiel": "configuration.md",
-    "On Boarding du module PayPal Officiel":             "onboarding.md",
-    "Remboursement d’une transaction":                   "remboursements.md",
+# Même arborescence dans les deux langues : seuls les intitulés changent.
+ROUTAGE = {
+ "fr": ({
+    "Installation du module PayPal Officiel":            "installation",
+    "Naviguer dans votre page de configuration":         "navigation",
+    "Configurations disponibles dans le module PayPal Officiel": "configuration",
+    "On Boarding du module PayPal Officiel":             "onboarding",
+    "Remboursement d’une transaction":                   "remboursements",
+  }, {
+    "Général":                                     "general",
+    "Fonctionnalités spécifiques Allemagne":       "specificites-allemagne",
+    "Fonctionnalités spécifiques USA":             "specificites-usa",
+    "Fonctionnalités spécifiques Mexique / Brésil": "specificites-mexique-bresil",
+    "Utilisation du module":                       "utilisation",
+    "Pré-requis":                                  "prerequis",
+    "Contact":                                     "contact",
+  }),
+ "en": ({
+    "Installing the Official PayPal module":             "installation",
+    "Navigating your configuration page":                "navigation",
+    "Settings available in the Official PayPal module":  "configuration",
+    "Onboarding for the Official PayPal module":         "onboarding",
+    "Refunding a transaction":                           "remboursements",
+  }, {
+    "General":                                     "general",
+    "Germany-specific features":                   "specificites-allemagne",
+    "USA-specific features":                       "specificites-usa",
+    "Mexico / Brazil-specific features":           "specificites-mexique-bresil",
+    "Using the module":                            "utilisation",
+    "Prerequisites":                               "prerequis",
+    "Contact":                                     "contact",
+  }),
 }
-ROUTE_H1 = {
-    "Général":                                     "general.md",
-    "Fonctionnalités spécifiques Allemagne":       "specificites-allemagne.md",
-    "Fonctionnalités spécifiques USA":             "specificites-usa.md",
-    "Fonctionnalités spécifiques Mexique / Brésil": "specificites-mexique-bresil.md",
-    "Utilisation du module":                       "utilisation.md",
-    "Pré-requis":                                  "prerequis.md",
-    "Contact":                                     "contact.md",
-}
+_h2, _h1 = ROUTAGE[LANGUE]
+ROUTE_H2 = {k: v + SUFFIXE + ".md" for k, v in _h2.items()}
+ROUTE_H1 = {k: v + SUFFIXE + ".md" for k, v in _h1.items()}
 def route(h1, h2):
     if h2 in ROUTE_H2: return ROUTE_H2[h2], h2, 2
     if h1 in ROUTE_H1: return ROUTE_H1[h1], h1, 1
@@ -163,6 +247,13 @@ for el in soup.body.find_all(["h1", "h2", "h3", "h4", "a"]):
         ANCHORS[el.get("id")] = (page, "" if t == root else last_slug)
 
 # ------------------------------------------------------------ 6. conversion
+# Signets que Google Docs référence mais n'exporte pas : la cible est déduite
+# du texte du lien. Tout autre lien interne non résolu est signalé en fin de run.
+SIGNETS_PERDUS = {
+    "fr": {"id.gv6ng4p90xo": ("configuration.md",    "mode-de-prelevement")},
+    "en": {"id.czwqti8srtug": ("configuration.en.md", "payment-collection-mode")},
+}[LANGUE]
+
 def to_md(el, page):
     md = markdownify(str(el), heading_style="ATX", bullets="-", strip=["span"])
 
@@ -170,18 +261,18 @@ def to_md(el, page):
         name = RENAME.get(m.group(1).split("/")[-1])
         if not name:
             return ""
-        return f'![{LEGEND.get(name, "")}](assets/img/{name}){{ loading=lazy }}'   # 10 Mo de GIF
+        return f'![{LEGEND.get(name, "")}]({CHEMIN_IMG(name)}){{ loading=lazy }}'   # 10 Mo de GIF
     md = re.sub(r'!\[[^\]]*\]\(([^)\s]+)[^)]*\)', fix_img, md)
 
     def fix_link(m):
         label, href = m.group(1), m.group(2)
         key = href.lstrip("#")
-        if key == "id.gv6ng4p90xo":          # signet perdu par Google Docs
-            key = next((k for k, v in ANCHORS.items() if v == ("configuration.md", "mode-de-prelevement")), key)
-        if href.startswith("#") and key in ANCHORS:
-            tgt_page, slug = ANCHORS[key]
-            href = (f"#{slug}" if tgt_page == page else
-                    f"{tgt_page}#{slug}" if slug else tgt_page)
+        if href.startswith("#"):
+            cible = ANCHORS.get(key) or SIGNETS_PERDUS.get(key)
+            if cible:
+                tgt_page, slug = cible
+                href = (f"#{slug}" if tgt_page == page else
+                        f"{tgt_page}#{slug}" if slug else tgt_page)
         return f"[{label}]({href})"
     md = re.sub(r'\[([^\]]*)\]\((#[^)]+)\)', fix_link, md)
 
@@ -245,32 +336,66 @@ for el in soup.body.find_all(["h1", "h2", "h3", "h4", "p", "ol", "ul", "table"])
         PAGES[page]["body"].append(md)
 
 # --------------------------------------------------------- 7. page d'accueil
-intro_md = [to_md(e, "index.md") for e in intro]
-start = next(i for i, m in enumerate(intro_md) if m.strip("* ") == "Introduction")
-SOMMAIRE = [
-    ("Général", "general.md"),
-    ("Installation du module PayPal Officiel", "installation.md"),
-    ("Naviguer dans votre page de configuration", "navigation.md"),
-    ("Configurations disponibles dans le module PayPal Officiel", "configuration.md"),
-    ("On Boarding du module PayPal Officiel", "onboarding.md"),
-    ("Remboursement d’une transaction", "remboursements.md"),
-    ("Fonctionnalités spécifiques Allemagne", "specificites-allemagne.md"),
-    ("Fonctionnalités spécifiques USA", "specificites-usa.md"),
-    ("Fonctionnalités spécifiques Mexique / Brésil", "specificites-mexique-bresil.md"),
-    ("Utilisation du module", "utilisation.md"),
-    ("Pré-requis", "prerequis.md"),
-    ("Contact", "contact.md"),
-]
-PAGES["index.md"] = {"title": "Documentation utilisateur", "body":
-    ["**Module PayPal V.6.X pour PrestaShop V.1.7.X et supérieur**"]
+ACCUEIL = {
+ "fr": {
+    "intro": "Introduction",
+    "titre": "Documentation utilisateur",
+    "sous_titre": "**Module PayPal V.6.X pour PrestaShop V.1.7.X et supérieur**",
+    "sommaire": "Sommaire",
+    "pdf_titre": "Version PDF",
+    "pdf_texte": "Une version imprimable de cette documentation est disponible ici :"
+                 " [Télécharger le PDF](https://202ecommerce.github.io/paypal-doc/pdf/documentation-paypal.pdf)",
+    "pages": [
+      ("Général", "general"), ("Installation du module PayPal Officiel", "installation"),
+      ("Naviguer dans votre page de configuration", "navigation"),
+      ("Configurations disponibles dans le module PayPal Officiel", "configuration"),
+      ("On Boarding du module PayPal Officiel", "onboarding"),
+      ("Remboursement d’une transaction", "remboursements"),
+      ("Fonctionnalités spécifiques Allemagne", "specificites-allemagne"),
+      ("Fonctionnalités spécifiques USA", "specificites-usa"),
+      ("Fonctionnalités spécifiques Mexique / Brésil", "specificites-mexique-bresil"),
+      ("Utilisation du module", "utilisation"), ("Pré-requis", "prerequis"), ("Contact", "contact"),
+    ],
+ },
+ "en": {
+    "intro": "Introduction",
+    "titre": "User documentation",
+    "sous_titre": "**PayPal module V.6.X for PrestaShop V.1.7.X and above**",
+    "sommaire": "Table of contents",
+    "pdf_titre": "PDF version",
+    "pdf_texte": "A printable version of this documentation is available here:"
+                 " [Download the PDF](https://202ecommerce.github.io/paypal-doc/pdf/documentation-paypal.pdf)",
+    "pages": [
+      ("General", "general"), ("Installing the Official PayPal module", "installation"),
+      ("Navigating your configuration page", "navigation"),
+      ("Settings available in the Official PayPal module", "configuration"),
+      ("Onboarding for the Official PayPal module", "onboarding"),
+      ("Refunding a transaction", "remboursements"),
+      ("Germany-specific features", "specificites-allemagne"),
+      ("USA-specific features", "specificites-usa"),
+      ("Mexico / Brazil-specific features", "specificites-mexique-bresil"),
+      ("Using the module", "utilisation"), ("Prerequisites", "prerequis"), ("Contact", "contact"),
+    ],
+ },
+}
+A = ACCUEIL[LANGUE]
+INDEX = "index" + SUFFIXE + ".md"
+intro_md = [to_md(e, INDEX) for e in intro]
+start = next(i for i, m in enumerate(intro_md) if m.strip("* ") == A["intro"])
+PAGES[INDEX] = {"title": A["titre"], "body":
+    [A["sous_titre"]]
     + [m for m in intro_md[start + 1:] if m]
-    + ["## Sommaire",
-       "\n".join(f"{i}. [{t}]({u})" for i, (t, u) in enumerate(SOMMAIRE, 1)),
-       '!!! note "Version PDF"\n    Une version imprimable de cette documentation est disponible ici :'
-       ' [Télécharger le PDF](https://202ecommerce.github.io/paypal-doc/pdf/documentation-paypal.pdf)']}
+    + ["## " + A["sommaire"],
+       "\n".join(f"{i}. [{titre}]({slug + SUFFIXE}.md)"
+                 for i, (titre, slug) in enumerate(A["pages"], 1)),
+       f'!!! note "{A["pdf_titre"]}"\n    {A["pdf_texte"]}']}
 
 # --------------------------------------- 7 bis. encarts « NB / A noter / Attention »
-MARKERS = {"nb": "note", "a noter": "note", "à noter": "note", "attention": "danger"}
+MARQUEURS = {
+    "fr": {"nb": "note", "a noter": "note", "à noter": "note", "attention": "danger"},
+    "en": {"nb": "note", "note": "note", "please note": "note", "warning": "danger"},
+}
+MARKERS = MARQUEURS[LANGUE]
 
 def strip_em(s):
     s = re.sub(r'^\*{1,3}|\*{1,3}$', '', s.strip())
@@ -286,7 +411,7 @@ def to_admonitions(body):
         block = body[i]
         head = strip_em(block)
         # marqueur seul sur son paragraphe, ou suivi de « : » — pas « A noter que ... »
-        key = re.match(r'^(NB|A noter|À noter|Attention)\s*(:|$)', head, re.I)
+        key = re.match(r'^(' + "|".join(sorted(MARKERS, key=len, reverse=True)) + r')\s*(:|$)', head, re.I)
         if not key or block.startswith("#"):
             out.append(block); i += 1; continue
         kind = MARKERS[key.group(1).lower()]
@@ -294,7 +419,7 @@ def to_admonitions(body):
         title = key.group(1).rstrip()
         content = []
         if rest and len(rest) <= 80:                     # « NB : Délai de validité… » -> titre
-            title = rest
+            title = rest[0].upper() + rest[1:]
         elif rest:
             content = [rest]
         i += 1
@@ -318,9 +443,11 @@ for page in PAGES.values():
     page["body"] = to_admonitions(page["body"])
 
 # ------------------------------------------------------------- 8. écriture
-# on ne régénère que les pages françaises : les traductions (*.en.md) restent
+# on n'efface que les pages de la langue en cours : les autres traductions restent
 for f in DOCS.glob("*.md"):
-    if len(f.name.split(".")) == 2:
+    parties = f.name.split(".")
+    langue_du_fichier = parties[1] if len(parties) == 3 else "fr"
+    if langue_du_fichier == LANGUE:
         f.unlink()
 FRONTMATTER = {}
 
@@ -328,5 +455,13 @@ for name, page in sorted(PAGES.items()):
     txt = FRONTMATTER.get(name, "") + "\n\n".join([f"# {page['title']}"] + [p for p in page["body"] if p.strip()])
     (DOCS / name).write_text(re.sub(r'\n{3,}', '\n\n', txt).rstrip() + "\n", encoding="utf-8")
     print(f"  {name:32} {len(txt):6} car.")
-print(f"\n{len(RENAME)} images ({sum(1 for v in RENAME.values() if v.endswith('.gif'))} GIF animés), "
-      f"{len(ANCHORS)} ancres mappées")
+# contrôle sur les fichiers réellement écrits : un lien Google résiduel est un lien mort
+orphelins = set()
+for f in DOCS.glob("*" + SUFFIXE + ".md"):
+    orphelins |= set(re.findall(r'\]\((#(?:id|h)\.[A-Za-z0-9]+)\)', f.read_text(encoding="utf-8")))
+if orphelins:
+    print("\n⚠ liens internes non résolus — à corriger dans SIGNETS_PERDUS :")
+    for a in sorted(orphelins):
+        print("   ", a)
+print(f"\nlangue {LANGUE} : {copiees} images copiées dans {DOSSIER_IMG}, "
+      f"{len(GIFS)} GIF mutualisés, {len(ANCHORS)} ancres mappées")

@@ -57,53 +57,65 @@ la production.
 Pour ajouter une page : créer le fichier `.md` dans `docs/`, **puis la déclarer dans la
 section `nav:` de `mkdocs.yml`** — sans quoi elle n'apparaîtra pas dans le menu.
 
-## Mettre à jour le contenu depuis le Google Doc
-
-Le contenu provient d'un Google Doc. Pour le réimporter après une modification :
-
-1. Dans le Google Doc : **Fichier > Télécharger > Page Web (.html, compressé)**.
-   C'est le seul export qui conserve les **GIF animés** et la résolution d'origine des
-   images — l'export Markdown les aplatit en PNG et les redimensionne à 605 px.
-2. Décompresser le zip dans `tools/export/`.
-3. Lancer :
-
-```bash
-.venv/bin/python tools/import-google-doc.py
-```
-
-Le script régénère l'intégralité de `docs/` : il résout les emphases portées par des
-classes CSS, déballe les liens du redirecteur Google, remet les titres à leur niveau,
-répare les en-têtes de tableaux, renomme les images et convertit les blocs
-« NB / A noter / Attention » en encarts. **Le texte n'est jamais reformulé.**
-
-Toute correction faite à la main dans `docs/` sera écrasée : corriger le Google Doc,
-puis réimporter.
 
 ## Traductions
 
 Le français est la langue par défaut et vit à la racine ; l'anglais vit sous `/en/`.
-Une page se traduit en doublant son fichier avec le suffixe de langue :
+Chaque page existe en deux fichiers :
 
 ```
 docs/configuration.md      ->  /configuration/    (français)
 docs/configuration.en.md   ->  /en/configuration/ (anglais)
 ```
 
-Les libellés de la navigation se traduisent dans `nav_translations`, sous la locale
-`en` de `mkdocs.base.yml`. Le sélecteur de langue apparaît automatiquement.
+Les deux langues sont générées par le même convertisseur, depuis deux Google Docs
+distincts. Les libellés de navigation se traduisent dans `nav_translations`, sous la
+locale `en` de `mkdocs.base.yml`.
 
-> **En l'état, les pages anglaises sont des coquilles** portant un encart
-> « Translation pending ». Elles donnent la structure et le sélecteur, pas le contenu.
-> **Ne pas publier en production avant d'avoir le texte anglais**, qui doit venir du
-> Google Doc anglais et non d'une traduction automatique : c'est de la documentation
-> officielle PayPal.
->
-> À savoir également : les captures d'écran et les GIF montrent un PrestaShop et une
-> boutique **en français**. Une version anglaise complète suppose de les réenregistrer
-> en locale anglaise.
+### Images
 
-Le convertisseur ne régénère que les pages françaises : les fichiers `*.en.md` ne sont
-jamais écrasés.
+| | Emplacement |
+| --- | --- |
+| Captures françaises | `docs/assets/img/` |
+| Captures anglaises | `docs/assets/img/en/` |
+| GIF de démonstration | `docs/assets/img/` — **mutualisés entre les deux langues** |
+
+Les GIF de l'export anglais sont les mêmes enregistrements d'écran que les français,
+réencodés sept fois plus lourds (71 Mo contre 10). Le convertisseur ne les recopie
+donc pas côté anglais.
+
+> **État des visuels.** Les captures anglaises portent des annotations en anglais,
+> mais l'interface PrestaShop qu'elles montrent reste en français. Les GIF sont
+> intégralement en français. Une version anglaise complète suppose de réenregistrer
+> ces visuels sur une boutique en locale anglaise.
+
+## Mettre à jour le contenu depuis les Google Docs
+
+1. Dans le Google Doc : **Fichier > Télécharger > Page Web (.html, compressé)**.
+   C'est le seul export qui conserve les **GIF animés** et la résolution d'origine des
+   images — l'export Markdown les aplatit en PNG et les redimensionne à 605 px.
+2. Décompresser le zip dans `tools/export/fr/` ou `tools/export/en/`.
+3. Lancer :
+
+```bash
+.venv/bin/python tools/import-google-doc.py fr
+```
+
+```bash
+.venv/bin/python tools/import-google-doc.py en
+```
+
+Le script régénère l'intégralité des pages de la langue demandée, sans toucher à
+l'autre : il résout les emphases portées par des classes CSS, déballe les liens du
+redirecteur Google, remet les titres à leur niveau, répare les en-têtes de tableaux,
+renomme les images et convertit les blocs « NB / A noter / Attention » (et leurs
+équivalents anglais) en encarts. **Le texte n'est jamais reformulé.**
+
+Il signale en fin d'exécution tout lien interne non résolu — Google Docs référence
+parfois des signets qu'il n'exporte pas. Les corriger dans `SIGNETS_PERDUS`.
+
+Toute correction faite à la main dans `docs/` sera écrasée : corriger le Google Doc,
+puis réimporter.
 
 ## Contrôle qualité du design
 

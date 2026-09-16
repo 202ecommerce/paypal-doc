@@ -1,7 +1,22 @@
 # Germany-specific features
 
-!!! warning "Translation pending"
-    This page is a placeholder. The English content has not been written yet —
-    the reference documentation is currently available in French only.
+In version 5.7.0
 
-    [Read this page in French](../../specificites-allemagne/)
+[+] New version of PaypalPlus : Paypal Checkout
+
+[+] Paypal Checkout - Extension Pay Upon Invoice (PUI)
+
+[+] Paypal Checkout - Extension ACDC
+
+[+] Paypal Checkout - Extension APM
+
+[+] Paypal Checkout - Extension Paypal Wallet
+
+[+] Paypal Checkout - Sending tracking number on PUI orders
+
+=> Prerequisite: the localization settings must be set to Germany, otherwise the payment options will not be offered
+
+Go Live conditions:
+
+- Make sure that email and KYB validation has been obtained
+- Run a live payment test (with a product priced at 0.01) on each of the payment methods to make sure that all payments work perfectly.
