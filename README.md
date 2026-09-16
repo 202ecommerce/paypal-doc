@@ -44,9 +44,15 @@ ENABLE_PDF_EXPORT=1 .venv/bin/mkdocs build
 | `docs/` | Les pages Markdown, une par chapitre du document source |
 | `docs/assets/img/` | Captures d'écran et GIF de démonstration du back-office |
 | `docs/assets/css/paypal.css` | Charte graphique PayPal (couleurs, typographie, composants) |
-| `mkdocs.yml` | Configuration du site et arborescence de navigation (`nav:`) |
-| `mkdocs.local.yml` | Surcharge de dev local, non versionnée |
+| `mkdocs.base.yml` | Configuration commune : thème, navigation (`nav:`), plugins |
+| `mkdocs.yml` | Production — hérite de la base et ajoute l'export PDF. C'est ce fichier que lance la CI. |
+| `mkdocs.local.yml` | Développement — hérite de la base, sans l'export PDF |
 | `tools/import-google-doc.py` | Ré-import du contenu depuis le Google Doc |
+
+Les plugins sont déclarés en **mapping** et non en liste : l'héritage MkDocs fusionne
+les mappings mais remplace les listes. Une liste ferait disparaître les plugins de la
+base dans les configurations qui en héritent — et l'aperçu local cesserait de refléter
+la production.
 
 Pour ajouter une page : créer le fichier `.md` dans `docs/`, **puis la déclarer dans la
 section `nav:` de `mkdocs.yml`** — sans quoi elle n'apparaîtra pas dans le menu.
@@ -72,6 +78,32 @@ répare les en-têtes de tableaux, renomme les images et convertit les blocs
 
 Toute correction faite à la main dans `docs/` sera écrasée : corriger le Google Doc,
 puis réimporter.
+
+## Traductions
+
+Le français est la langue par défaut et vit à la racine ; l'anglais vit sous `/en/`.
+Une page se traduit en doublant son fichier avec le suffixe de langue :
+
+```
+docs/configuration.md      ->  /configuration/    (français)
+docs/configuration.en.md   ->  /en/configuration/ (anglais)
+```
+
+Les libellés de la navigation se traduisent dans `nav_translations`, sous la locale
+`en` de `mkdocs.base.yml`. Le sélecteur de langue apparaît automatiquement.
+
+> **En l'état, les pages anglaises sont des coquilles** portant un encart
+> « Translation pending ». Elles donnent la structure et le sélecteur, pas le contenu.
+> **Ne pas publier en production avant d'avoir le texte anglais**, qui doit venir du
+> Google Doc anglais et non d'une traduction automatique : c'est de la documentation
+> officielle PayPal.
+>
+> À savoir également : les captures d'écran et les GIF montrent un PrestaShop et une
+> boutique **en français**. Une version anglaise complète suppose de les réenregistrer
+> en locale anglaise.
+
+Le convertisseur ne régénère que les pages françaises : les fichiers `*.en.md` ne sont
+jamais écrasés.
 
 ## Contrôle qualité du design
 

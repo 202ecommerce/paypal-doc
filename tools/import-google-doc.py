@@ -318,8 +318,10 @@ for page in PAGES.values():
     page["body"] = to_admonitions(page["body"])
 
 # ------------------------------------------------------------- 8. écriture
+# on ne régénère que les pages françaises : les traductions (*.en.md) restent
 for f in DOCS.glob("*.md"):
-    f.unlink()
+    if len(f.name.split(".")) == 2:
+        f.unlink()
 FRONTMATTER = {}
 
 for name, page in sorted(PAGES.items()):

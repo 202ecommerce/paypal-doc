@@ -1,0 +1,9 @@
+# Configuration de DÉVELOPPEMENT local.
+# Identique à la production, sans l'export PDF : le plugin mkdocs-with-pdf
+# s'appuie sur WeasyPrint, qui exige les bibliothèques système Pango et Cairo —
+# non installables sans droits administrateur. La CI, elle, les installe.
+INHERIT: mkdocs.base.yml
+
+# Le plugin i18n fait respecter le chemin de site_url au serveur de développement :
+# sans cette ligne, le site local vivrait sous /paypal-doc/ comme en production.
+site_url: http://127.0.0.1:8000/
