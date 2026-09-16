@@ -232,8 +232,9 @@ for el in soup.body.find_all(["h1", "h2", "h3", "h4", "p", "ol", "ul", "table"])
     if not started:
         intro.append(el)
         continue
-    if el.name == "p" and el.find("a", href=re.compile(r'^#h\.')):
-        continue                                          # ligne du sommaire Google Docs
+    # Pas de filtre sur les liens #h. ici : le sommaire Google Docs précède le
+    # premier titre et est déjà écarté plus haut. Ce filtre supprimait en
+    # revanche des paragraphes de contenu qui renvoient à un autre chapitre.
     page, root, base = route(h1, h2)
     if not page:
         continue
@@ -319,9 +320,7 @@ for page in PAGES.values():
 # ------------------------------------------------------------- 8. écriture
 for f in DOCS.glob("*.md"):
     f.unlink()
-# La matrice des produits fait 5 colonnes : sans le sommaire de droite, elle tient
-# dans la largeur et n'a plus besoin de défilement horizontal.
-FRONTMATTER = {"general.md": "---\nhide:\n  - toc\n---\n"}
+FRONTMATTER = {}
 
 for name, page in sorted(PAGES.items()):
     txt = FRONTMATTER.get(name, "") + "\n\n".join([f"# {page['title']}"] + [p for p in page["body"] if p.strip()])

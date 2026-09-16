@@ -1,10 +1,8 @@
----
-hide:
-  - toc
----
 # Général
 
 ## Êtes-vous client PayPal pour les Professionnels ?
+
+**Vous êtes déjà un client PayPal:** Rendez-vous au [chapitre 2](#quest-ce-que-le-module-paypal-officiel)
 
 **Vous n’êtes pas client PayPal ?**
 

@@ -127,6 +127,25 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
 .md-typeset a { font-weight: 500; }
 .md-typeset a:hover { text-decoration: underline; }
 
+/* Liens sortants : une flèche discrète, et la mention « nouvel onglet »
+   réservée aux lecteurs d'écran. */
+.md-typeset a[target="_blank"]::after {
+  content: "↗";
+  display: inline-block;
+  margin-left: .15em;
+  font-size: .85em;
+  text-decoration: none;
+}
+.lien-externe-note {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------- Captures d'écran ---------- */
 
 .md-typeset img:not(.emojione):not(.twemoji):not(.gemoji) {

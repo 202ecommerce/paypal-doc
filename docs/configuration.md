@@ -143,6 +143,8 @@ Faites la promotion du paiement en plusieurs fois au sein de votre site et augme
 
 Un rendu visuel vous accompagne lors de la configuration dans votre Back Office PrestaShop afin que vous puissiez choisir rapidement la meilleure option pour votre boutique en ligne.
 
+Une fois votre décision prise et vos configurations effectuées, testez les affichages en live sur votre site [grâce à la restriction IP](#passer-en-mode-restriction-ip) et prenez le temps de faire vos choix avant d’afficher les nouvelles fonctionnalités finalisées à vos clients.
+
 ## Personnalisez les raccourcis ‘PayPal Express Checkout’
 
 Adaptez les raccourcis de paiement PayPal à votre charte graphique de manière rapide et efficace.
