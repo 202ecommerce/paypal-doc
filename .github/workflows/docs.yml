@@ -3,6 +3,11 @@ name: Build & Deploy Documentation
 on:
   push:
     branches: [main]
+  # Sur une pull request, on construit sans déployer : c'est le seul moyen de
+  # vérifier l'export PDF avant la fusion, puisqu'il exige des bibliothèques
+  # système absentes des postes de développement.
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -37,6 +42,7 @@ jobs:
         run: mkdocs build --strict
 
       - name: Deploy to GitHub Pages
+        if: github.event_name != 'pull_request'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
