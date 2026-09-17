@@ -1,5 +1,7 @@
-# Remboursements et annulations
+# Remboursement d’une transaction
 
-Procédure de remboursement total ou partiel d'une commande payée par PayPal, depuis le back-office PrestaShop.
+Après passage d’une commande, vous avez la possibilité depuis l’écran de remboursement natif de PrestaShop de rembourser tout ou partie de la commande.
 
-*(À compléter : capture d'écran de l'action de remboursement, cas particuliers par moyen de paiement)*
+Le remboursement sera directement envoyé à Paypal et votre client remboursé.
+
+![Écran de remboursement du back-office PrestaShop](assets/img/remboursement-back-office.png){ loading=lazy }

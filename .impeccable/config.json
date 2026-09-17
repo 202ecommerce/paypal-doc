@@ -1,0 +1,21 @@
+{
+  "detector": {
+    "ignoreRules": [
+      "clipped-overflow-container"
+    ],
+    "ignoreFiles": [
+      "site/404.html"
+    ],
+    "ignoreValues": [
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "site/**"
+        ],
+        "createdAt": "2026-09-15T10:43:15.642Z",
+        "reason": "CSS compilé de Material for MkDocs (champ de recherche), non modifiable sans forker le thème"
+      }
+    ]
+  }
+}

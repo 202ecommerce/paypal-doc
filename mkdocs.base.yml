@@ -1,0 +1,130 @@
+# Configuration commune aux deux environnements.
+# Ne pas lancer MkDocs sur ce fichier : utiliser mkdocs.yml (production) ou
+# mkdocs.local.yml (développement). Les plugins sont déclarés en mapping et non
+# en liste : l'héritage MkDocs fusionne les mappings mais remplace les listes —
+# une liste ici ferait disparaître i18n de la configuration locale.
+
+site_name: Module PayPal Officiel pour PrestaShop
+site_description: Documentation utilisateur du module PayPal V6 pour PrestaShop 1.7 et supérieur
+site_url: https://202ecommerce.github.io/paypal-doc/
+repo_url: https://github.com/202ecommerce/paypal-doc
+repo_name: 202ecommerce/paypal-doc
+copyright: Documentation éditée par 202-ecommerce
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: fr
+  logo: assets/logo-paypal.png
+  favicon: assets/logo-paypal.png
+  font:
+    text: Archivo
+    code: Roboto Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Passer en mode sombre
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Passer en mode clair
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+    - navigation.tracking
+    # le sommaire de la page rejoint la navigation de gauche, sous le chapitre
+    # courant : une seule colonne de navigation au lieu de deux
+    - toc.integrate
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+
+hooks:
+  - hooks/pdf-par-langue.py
+
+extra_css:
+  - assets/css/paypal.css
+
+extra_javascript:
+  - assets/js/liens-externes.js
+
+nav:
+  - Accueil: index.md
+  - Général: general.md
+  - Fonctionnalités communes:
+      - Installation du module: installation.md
+      - Naviguer dans la page de configuration: navigation.md
+      - Configurations disponibles: configuration.md
+      - On Boarding: onboarding.md
+      - Remboursement d’une transaction: remboursements.md
+  - Fonctionnalités par pays:
+      - Allemagne: specificites-allemagne.md
+      - USA: specificites-usa.md
+      - Mexique / Brésil: specificites-mexique-bresil.md
+  - Utilisation: utilisation.md
+  - Pré-requis: prerequis.md
+  - Contact: contact.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+      permalink_title: Lien vers cette section
+
+plugins:
+  search:
+    lang: [fr, en]
+  # Le français est la langue par défaut (à la racine), l'anglais vit sous /en/.
+  # Une page traduite s'écrit en doublant le fichier : configuration.en.md.
+  i18n:
+    docs_structure: suffix
+    fallback_to_default: true
+    reconfigure_material: true
+    reconfigure_search: true
+    languages:
+      - locale: fr
+        name: Français
+        default: true
+        build: true
+      - locale: en
+        name: English
+        build: true
+        site_name: Official PayPal module for PrestaShop
+        site_description: User guide for the PayPal V6 module for PrestaShop 1.7 and above
+        copyright: Documentation published by 202-ecommerce
+        nav_translations:
+          Accueil: Home
+          Général: General
+          Fonctionnalités communes: Common features
+          Installation du module: Installing the module
+          Naviguer dans la page de configuration: Navigating the configuration page
+          Configurations disponibles: Available settings
+          On Boarding: Onboarding
+          Remboursement d’une transaction: Refunding a transaction
+          Fonctionnalités par pays: Country-specific features
+          Allemagne: Germany
+          USA: United States
+          Mexique / Brésil: Mexico / Brazil
+          Utilisation: Usage
+          Pré-requis: Prerequisites

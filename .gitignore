@@ -1,0 +1,18 @@
+# Environnement Python local
+.venv/
+__pycache__/
+
+# Build MkDocs
+site/
+
+# macOS
+.DS_Store
+
+# Config outil local
+.claude/
+
+# Export du Google Doc, réimporté à la demande
+tools/export/
+
+# Config locale du détecteur impeccable (la config partagée est versionnée)
+.impeccable/config.local.json
