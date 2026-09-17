@@ -41,6 +41,17 @@ jobs:
           ENABLE_PDF_EXPORT: "1"
         run: mkdocs build --strict
 
+      # Sur une pull request, les PDF sont téléchargeables depuis la page du run :
+      # c'est le seul moyen de relire le document avant la fusion.
+      - name: Upload PDFs
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-pdf
+          path: |
+            site/pdf/documentation-paypal.pdf
+            site/en/pdf/documentation-paypal.pdf
+
       - name: Deploy to GitHub Pages
         if: github.event_name != 'pull_request'
         uses: peaceiris/actions-gh-pages@v4
