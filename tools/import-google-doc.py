@@ -364,7 +364,7 @@ ACCUEIL = {
     "sommaire": "Table of contents",
     "pdf_titre": "PDF version",
     "pdf_texte": "A printable version of this documentation is available here:"
-                 " [Download the PDF](https://202ecommerce.github.io/paypal-doc/pdf/documentation-paypal.pdf)",
+                 " [Download the PDF](https://202ecommerce.github.io/paypal-doc/en/pdf/documentation-paypal.pdf)",
     "pages": [
       ("General", "general"), ("Installing the Official PayPal module", "installation"),
       ("Navigating your configuration page", "navigation"),

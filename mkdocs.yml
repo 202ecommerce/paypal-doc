@@ -5,9 +5,11 @@ INHERIT: mkdocs.base.yml
 plugins:
   with-pdf:
     output_path: pdf/documentation-paypal.pdf
-    cover_title: Documentation utilisateur – Module PayPal Officiel
-    cover_subtitle: Module PayPal V6.X pour PrestaShop V1.7.X et supérieur
-    toc_title: Sommaire
     author: 202ecommerce
-    cover_logo: docs/assets/logo-paypal.png
+    cover_logo: assets/logo-paypal.png   # relatif à la racine du site
+    # Titre, sous-titre et intitulé du sommaire sont posés par langue dans
+    # hooks/pdf-par-langue.py — le plugin n'a qu'une configuration globale.
+    cover_title: Documentation utilisateur
+    cover_subtitle: Module PayPal Officiel V6.X — PrestaShop V1.7.X et supérieur
+    toc_title: Sommaire
     enabled_if_env: ENABLE_PDF_EXPORT

@@ -353,3 +353,47 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
 .md-footer-copyright,
 .md-search-result__meta,
 .md-skip { font-size: .72rem; }        /* plancher de lisibilité : 11px */
+
+
+/* ==========================================================================
+   Export PDF
+   WeasyPrint rend la page hors navigateur : il ne récupère pas les polices de
+   Google Fonts, et la mesure de lecture calée sur l'écran gâche la largeur de
+   la page. Ces règles ne concernent que l'impression et l'export.
+   ========================================================================== */
+
+@media print {
+  :root { --md-default-fg-color: #000000; }
+
+  /* WeasyPrint ne récupère pas Archivo depuis Google Fonts : sans cette règle
+     le PDF sort dans le serif par défaut. On demande une générique plutôt
+     qu'une police nommée, pour ne pas imposer un choix au moteur de rendu. */
+  body, .md-typeset { font-family: sans-serif; }
+
+  /* La page fait déjà la largeur d'un A4 : la mesure de lecture calée sur
+     l'écran n'a plus lieu d'être. À ne surtout pas étendre aux titres : ils
+     portent les ancres du PDF, et les toucher ici casse la navigation interne
+     (97 liens actifs tombent à 38). */
+  .md-typeset > :is(p, ul, ol, blockquote) { max-width: none; }
+
+  .md-typeset h1, .md-typeset h2, .md-typeset h3 { color: var(--pp-blue-deep); }
+
+  /* les captures gardent leur cadre, sans ombre ni coins inutiles à l'impression */
+  .md-typeset img:not(.emojione):not(.twemoji):not(.gemoji) {
+    border: 1px solid rgba(0, 0, 0, .18);
+    border-radius: 0;
+    max-width: 100%;
+  }
+
+  .md-typeset table:not([class]) { border-radius: 0; }
+  /* à l'écran les URL des cellules cassent n'importe où pour tenir dans la
+     colonne ; sur papier la page est plus large, on coupe proprement */
+  .md-typeset table:not([class]) a { word-break: normal; overflow-wrap: anywhere; }
+  .md-typeset .admonition, .md-typeset details { border-radius: 0; break-inside: avoid; }
+  .md-typeset a[target="_blank"]::after { content: ""; }   /* la flèche n'a pas de sens sur papier */
+
+  /* Couverture : le logo vient de templates/cover.html.j2 */
+  #doc-cover .cover-logo { text-align: center; margin: 4rem 0 2rem; }
+  #doc-cover .cover-logo img { height: 2.4cm; width: auto; border: 0; }
+  #doc-cover h1 { border-bottom-color: var(--pp-blue-deep) !important; }
+}

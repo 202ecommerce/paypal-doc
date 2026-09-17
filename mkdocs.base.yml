@@ -51,6 +51,9 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
+hooks:
+  - hooks/pdf-par-langue.py
+
 extra_css:
   - assets/css/paypal.css
 

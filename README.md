@@ -22,20 +22,53 @@ Le site est alors disponible sur <http://127.0.0.1:8000>.
 ### macOS sans droits administrateur
 
 Le plugin d'export PDF (`mkdocs-with-pdf`) s'appuie sur WeasyPrint, qui exige les
-bibliothèques système Pango et Cairo — installables via Homebrew, donc indisponibles
-sans droits admin. Dans ce cas, utiliser la configuration de dev qui désactive ce plugin :
+bibliothèques système Pango et Cairo. Sans droits admin, Homebrew est indisponible —
+mais conda-forge les fournit dans le dossier personnel :
 
 ```bash
-.venv/bin/mkdocs serve -f mkdocs.local.yml
+curl -sL https://micro.mamba.pm/api/micromamba/osx-arm64/latest | tar -xj bin/micromamba && mv bin/micromamba ~/.local/bin/
 ```
 
-Le PDF reste généré normalement en production par la CI, qui installe ces bibliothèques.
+```bash
+MAMBA_ROOT_PREFIX=$HOME/.local/micromamba ~/.local/bin/micromamba create -y -p ~/.local/weasyprint-libs -c conda-forge pango cairo gdk-pixbuf glib libffi fontconfig
+```
+
+Il suffit ensuite de pointer le chargeur dynamique vers ces bibliothèques :
+
+```bash
+export DYLD_FALLBACK_LIBRARY_PATH="$HOME/.local/weasyprint-libs/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+```
+
+Sans cette variable, `mkdocs.local.yml` reste utilisable : il ne charge pas le plugin PDF.
 
 ### Générer le PDF en local
 
 ```bash
-ENABLE_PDF_EXPORT=1 .venv/bin/mkdocs build
+ENABLE_PDF_EXPORT=1 .venv/bin/mkdocs build --strict -f mkdocs.yml
 ```
+
+Produit `site/pdf/documentation-paypal.pdf` et `site/en/pdf/documentation-paypal.pdf`.
+
+## Export PDF
+
+Chaque build de production régénère **un PDF par langue**, à partir des pages du site :
+la version imprimable ne peut donc pas diverger du contenu en ligne. Les pages d'accueil
+y renvoient, chacune vers le PDF de sa langue.
+
+| | |
+| --- | --- |
+| `/pdf/documentation-paypal.pdf` | documentation française, 35 pages |
+| `/en/pdf/documentation-paypal.pdf` | documentation anglaise, 32 pages |
+
+Le plugin n'ayant qu'une configuration globale, la couverture et l'intitulé du sommaire
+sont traduits par `hooks/pdf-par-langue.py`. La couverture elle-même vient de
+`templates/cover.html.j2` : le gabarit d'origine pose le logo en image de fond d'un
+conteneur flexbox, que WeasyPrint ne dimensionne pas.
+
+Les règles propres au PDF sont regroupées dans le bloc `@media print` de
+`docs/assets/css/paypal.css`. **Ne pas y toucher aux titres** : ils portent les ancres
+du document, et les inclure dans une règle de largeur casse la navigation interne du PDF
+— 98 liens actifs tombent à 38.
 
 ## Structure
 

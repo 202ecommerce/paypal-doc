@@ -22,4 +22,4 @@ This documentation is intended for users of PrestaShop 1.7 and above, using PayP
 12. [Contact](contact.en.md)
 
 !!! note "PDF version"
-    A printable version of this documentation is available here: [Download the PDF](https://202ecommerce.github.io/paypal-doc/pdf/documentation-paypal.pdf)
+    A printable version of this documentation is available here: [Download the PDF](https://202ecommerce.github.io/paypal-doc/en/pdf/documentation-paypal.pdf)
