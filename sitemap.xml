@@ -1,3 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/configuration/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/configuration/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/configuration/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/contact/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/contact/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/contact/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/general/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/general/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/general/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/installation/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/installation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/installation/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/navigation/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/navigation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/navigation/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/onboarding/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/onboarding/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/onboarding/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/prerequis/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/prerequis/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/prerequis/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/remboursements/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/remboursements/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/remboursements/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/specificites-allemagne/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/specificites-allemagne/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/specificites-allemagne/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/specificites-mexique-bresil/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/specificites-mexique-bresil/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/specificites-mexique-bresil/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/specificites-usa/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/specificites-usa/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/specificites-usa/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/utilisation/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/utilisation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/utilisation/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/configuration/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/configuration/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/configuration/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/contact/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/contact/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/contact/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/general/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/general/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/general/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/installation/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/installation/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/installation/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/navigation/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/navigation/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/navigation/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/onboarding/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/onboarding/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/onboarding/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/prerequis/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/prerequis/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/prerequis/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/remboursements/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/remboursements/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/remboursements/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/specificites-allemagne/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/specificites-allemagne/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/specificites-allemagne/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/specificites-mexique-bresil/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/specificites-mexique-bresil/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/specificites-mexique-bresil/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/specificites-usa/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/specificites-usa/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/specificites-usa/"/>
+    </url>
+    <url>
+        <loc>https://202ecommerce.github.io/paypal-doc/en/utilisation/</loc>
+        <lastmod>2026-09-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://202ecommerce.github.io/paypal-doc/en/utilisation/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://202ecommerce.github.io/paypal-doc/utilisation/"/>
+    </url>
 </urlset>

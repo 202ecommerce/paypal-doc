@@ -1,0 +1,404 @@
+/* ==========================================================================
+   Charte graphique PayPal — relevée sur paypal.com
+   ---------------------------------------------------------------------------
+   Couleurs   #002991 bleu profond · #0070E0 bleu interactif · #60CDFF bleu clair
+              #F1EFEA crème · #FFC439 or (boutons de paiement) · #000000 texte
+   Titres     noir, graisse 900, interlettrage -0.03em, interligne 1.1
+   Corps      noir, 16px / 24px
+   Boutons    pilule (radius 1000px), graisse 700
+   Typo       « PayPal Pro » / « PayPal Pro Text VF » sont propriétaires. Archivo sert
+              de substitut : grotesque au dessin proche, graisses 400 à 900, et
+              suffisamment peu répandue pour ne pas banaliser l'interface.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --pp-blue-deep:  #002991;
+  --pp-blue:       #0070E0;
+  --pp-blue-light: #60CDFF;
+  --pp-cream:      #F1EFEA;
+  --pp-gold:       #FFC439;
+  --pp-black:      #000000;
+  --pp-grey:       #545D68;
+  --pp-radius:     16px;
+  --pp-pill:       1000px;
+}
+
+/* ---------- Palettes ---------- */
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:        #FFFFFF;
+  --md-primary-fg-color--light: #FFFFFF;
+  --md-primary-fg-color--dark:  var(--pp-blue-deep);
+  --md-primary-bg-color:        var(--pp-black);
+  --md-primary-bg-color--light: var(--pp-grey);
+
+  --md-accent-fg-color:         var(--pp-blue);
+  --md-typeset-a-color:         var(--pp-blue);
+
+  --md-default-fg-color:        var(--pp-black);
+  --md-default-bg-color:        #FFFFFF;
+  --md-footer-bg-color:         var(--pp-blue-deep);
+  --md-footer-bg-color--dark:   #001F6E;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 222;
+  --md-primary-fg-color:        #001B5E;
+  --md-primary-bg-color:        #FFFFFF;
+  --md-accent-fg-color:         var(--pp-blue-light);
+  --md-typeset-a-color:         var(--pp-blue-light);
+  --md-footer-bg-color:         #000D26;
+}
+
+/* ---------- En-tête : blanc, logo bleu, comme paypal.com ---------- */
+
+[data-md-color-scheme="default"] .md-header,
+[data-md-color-scheme="default"] .md-tabs {
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: none;
+}
+
+.md-header__title { font-weight: 700; letter-spacing: -.01em; }
+.md-header__button.md-logo img { height: 1.6rem; width: auto; }
+/* Sur fond sombre, PayPal prescrit la version réservée blanche du logo.
+   Un filtre ne convient pas : il écraserait le bichromatisme bleu du logo. */
+[data-md-color-scheme="slate"] .md-header__button.md-logo img {
+  content: url("../logo-paypal-blanc.png");
+}
+
+/* Onglets : pilules, à la PayPal.
+   Material cale le lien en haut du <li> ; on le recentre, sinon la pilule
+   flotte dans le haut de la barre. */
+.md-tabs__list { padding: .2rem 0; }
+.md-tabs__item {
+  display: flex;
+  align-items: center;
+}
+.md-tabs__link {
+  font-weight: 500;
+  opacity: 1;
+  padding: .3rem .8rem;
+  margin: 0 .1rem;
+  border-radius: var(--pp-pill);
+  transition: background-color .2s;
+}
+.md-tabs__link:hover { background-color: rgba(5, 55, 130, .08); }
+/* Material 9 porte le marqueur actif sur le <li>, pas sur le lien */
+.md-tabs__item--active > .md-tabs__link {
+  font-weight: 700;
+  background-color: rgba(5, 55, 130, .08);
+}
+[data-md-color-scheme="slate"] .md-tabs__link:hover,
+[data-md-color-scheme="slate"] .md-tabs__item--active > .md-tabs__link {
+  background-color: rgba(255, 255, 255, .14);
+}
+
+/* Bloc « dépôt ». Dans le tiroir mobile, Material le peint avec la couleur de
+   texte de l'en-tête — noire ici, sur fond bleu profond : 1,7:1, illisible. */
+.md-nav__source {
+  color: #FFFFFF;
+  padding: .55rem .8rem;
+}
+.md-nav__source .md-source__repository,
+.md-nav__source .md-source__facts { color: #FFFFFF; }
+.md-source { font-size: .72rem; }        /* plancher de lisibilité */
+
+/* ---------- Navigation latérale ----------
+   Trois niveaux à distinguer : le chapitre, ses pages, et les sections de la
+   page ouverte. Sans traitement, tout se ressemble et on ne sait plus où on est. */
+
+/* 1. Le chapitre : un intitulé de rubrique, pas un lien */
+.md-sidebar--primary .md-nav__item--section > .md-nav__link:first-of-type {
+  color: var(--md-default-fg-color--light);
+  font-size: .7rem;            /* plancher de lisibilité : 11px */
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+}
+
+/* 2. Les pages du chapitre */
+.md-sidebar--primary .md-nav__item > .md-nav__link {
+  border-radius: 8px;
+  padding: .45rem .6rem;       /* >= 8px : le tiroir mobile borde chaque entrée */
+  margin: .1rem 0;
+  transition: background-color .15s;
+}
+.md-sidebar--primary .md-nav__item > .md-nav__link:hover {
+  background-color: rgba(5, 55, 130, .06);
+}
+.md-sidebar--primary .md-nav__item--active > .md-nav__link:not(.md-nav__link--index) {
+  font-weight: 700;
+}
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item > .md-nav__link:hover {
+  background-color: rgba(255, 255, 255, .07);
+}
+
+/* 3. Les sections de la page ouverte : regroupées dans leur propre encart,
+      pour qu'on voie d'un coup d'œil où finit la liste des pages */
+.md-sidebar--primary .md-nav--secondary {
+  background-color: var(--pp-cream);
+  border: 1px solid rgba(0, 0, 0, .08);
+  border-radius: var(--pp-radius);
+  padding: .6rem;
+  margin: .35rem 0 .6rem;
+}
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav--secondary {
+  background-color: rgba(255, 255, 255, .04);
+  border-color: rgba(255, 255, 255, .1);
+}
+.md-sidebar--primary .md-nav--secondary .md-nav__link {
+  font-size: .72rem;           /* plancher de lisibilité : 11px */
+  line-height: 1.35;
+  padding: .3rem .45rem;
+  color: var(--md-default-fg-color--light);
+}
+.md-sidebar--primary .md-nav--secondary .md-nav__link:hover {
+  color: var(--md-accent-fg-color);
+  background-color: transparent;
+}
+.md-sidebar--primary .md-nav--secondary .md-nav__link--active {
+  color: var(--md-typeset-a-color);
+  font-weight: 700;
+}
+/* les sous-sections de niveau 3 : un simple retrait, pas un second encart */
+.md-sidebar--primary .md-nav--secondary .md-nav .md-nav {
+  border-left: 1px solid rgba(0, 0, 0, .1);
+  margin-left: .45rem;
+  padding: .1rem 0 .1rem .45rem;
+}
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav--secondary .md-nav .md-nav {
+  border-left-color: rgba(255, 255, 255, .14);
+}
+
+/* Dans le tiroir mobile, Material sépare chaque entrée par un filet, contre
+   lequel les entrées viennent buter. Les pastilles au survol et l'encart du
+   sommaire jouent déjà ce rôle : on retire les filets et on aère la liste. */
+/* Hors requête média : en desktop Material ne pose pas ce filet, le retirer
+   inconditionnellement ne change donc rien là-bas. */
+.md-nav--primary .md-nav__item { border-top: none; }
+.md-nav--primary .md-nav__list { padding: .4rem; }          /* >= 8px sur les 4 côtés */
+/* La liste du tiroir est un conteneur de défilement (flex:1) : la dernière
+   entrée atteint sinon le bas de la zone scrollable. */
+.md-nav--primary .md-nav__list > .md-nav__item:last-child { margin-bottom: .4rem; }
+
+/* La colonne de droite ayant disparu, la grille s'élargit et la navigation
+   respire : les intitulés de sections français sont longs. */
+@media screen and (min-width: 76.25em) {
+  .md-grid { max-width: 68rem; }
+  .md-sidebar--primary { width: 15rem; }
+}
+
+/* Le texte occupait toute la largeur libérée : au-delà de 80 caractères par
+   ligne l'œil décroche en fin de ligne. Seul le texte est bridé — tableaux,
+   captures et encarts gardent la pleine largeur. */
+.md-typeset > :is(p, ul, ol, blockquote, h1, h2, h3, h4, h5, h6) {
+  max-width: 32rem;            /* ~80 caractères par ligne */
+}
+
+/* ---------- Typographie ---------- */
+
+body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  color: var(--md-default-fg-color);
+  letter-spacing: -.03em;
+  line-height: 1.1;
+}
+/* Tailles fluides : sans cela le H1 occupe quatre lignes sur un écran de 375 px */
+.md-typeset h1 { font-weight: 900; font-size: clamp(1.5rem, 1.15rem + 2.2vw, 2.2rem); margin-bottom: 1.2rem; }
+.md-typeset h2 { font-weight: 900; font-size: clamp(1.15rem, .95rem + 1.2vw, 1.55rem); margin-top: 2.4em; }
+.md-typeset h3 { font-weight: 800; font-size: clamp(1rem, .9rem + .6vw, 1.2rem); }
+.md-typeset h4 { font-weight: 700; letter-spacing: -.02em; }
+
+.md-typeset { font-size: .78rem; line-height: 1.5; }
+.md-typeset a { font-weight: 500; }
+.md-typeset a:hover { text-decoration: underline; }
+
+/* Liens sortants : une flèche discrète, et la mention « nouvel onglet »
+   réservée aux lecteurs d'écran. */
+.md-typeset a[target="_blank"]::after {
+  content: "↗";
+  display: inline-block;
+  margin-left: .15em;
+  font-size: .85em;
+  text-decoration: none;
+}
+.lien-externe-note {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Captures d'écran ---------- */
+
+.md-typeset img:not(.emojione):not(.twemoji):not(.gemoji) {
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: var(--pp-radius);
+  margin: 1rem 0;
+}
+/* Sur fond sombre, une bordure noire ne délimite plus rien */
+[data-md-color-scheme="slate"] .md-typeset img:not(.emojione):not(.twemoji):not(.gemoji) {
+  border-color: rgba(255, 255, 255, .18);
+}
+
+/* ---------- Tableaux ---------- */
+
+.md-typeset table:not([class]) {
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: var(--pp-radius);
+  overflow: hidden;
+  font-size: .78rem;              /* Material descend à 10.24px ; on aligne sur le corps de texte */
+  line-height: 1.45;
+}
+/* Marges internes resserrées : les tableaux à plusieurs colonnes tiennent
+   dans la largeur au lieu de défiler horizontalement. */
+.md-typeset table:not([class]) :is(th, td) {
+  padding: .5rem .6rem;
+  overflow-wrap: break-word;    /* pas hyphens: auto, qui couperait « Pay-Pal » */
+}
+/* Les URL longues cassent où il faut, sans tiret parasite */
+.md-typeset table:not([class]) a { word-break: break-all; }
+/* Sur un tableau à 4 colonnes ou plus, la colonne des libellés se fait écraser :
+   on lui garantit de quoi tenir sur une ligne. */
+.md-typeset table:not([class]):has(th:nth-child(4)) :is(th, td):first-child {
+  min-width: 9.5em;
+}
+.md-typeset table:not([class]) th {
+  background-color: var(--pp-blue-deep);
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+[data-md-color-scheme="default"] .md-typeset table:not([class]) tr:nth-child(even) {
+  background-color: var(--pp-cream);
+}
+
+/* ---------- Encarts ---------- */
+
+.md-typeset .admonition,
+.md-typeset details {
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: var(--pp-radius);
+  box-shadow: none;
+  font-size: .75rem;
+}
+.md-typeset .admonition-title {
+  font-weight: 700;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, .07);
+  margin-bottom: .6rem;
+}
+.md-typeset .admonition-title::before { background-color: currentcolor; }
+
+.md-typeset .admonition.note   > .admonition-title,
+.md-typeset .admonition.info   > .admonition-title { color: var(--pp-blue-deep); }
+.md-typeset .admonition.tip    > .admonition-title { color: var(--pp-blue); }
+.md-typeset .admonition.warning > .admonition-title { color: #8A6100; }
+.md-typeset .admonition.danger  > .admonition-title { color: #B3261E; }
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.note > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .admonition.info > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .admonition.tip  > .admonition-title { color: var(--pp-blue-light); }
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning > .admonition-title { color: var(--pp-gold); }
+/* Le rouge foncé tombe à 2,44:1 sur fond sombre */
+[data-md-color-scheme="slate"] .md-typeset .admonition.danger > .admonition-title { color: #FF8A80; }
+
+/* ---------- Cartes ---------- */
+
+.md-typeset .grid.cards > ul > li {
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: var(--pp-radius);
+  box-shadow: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--pp-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+}
+
+/* ---------- Boutons ---------- */
+
+.md-typeset .md-button {
+  border-radius: var(--pp-pill);
+  border-width: 2px;
+  font-weight: 700;
+  padding: .5em 1.4em;
+}
+.md-typeset .md-button--primary {
+  background-color: var(--pp-blue-deep);
+  border-color: var(--pp-blue-deep);
+  color: #FFFFFF;
+}
+
+/* Champ de recherche en pilule */
+.md-search__form { border-radius: var(--pp-pill); }
+.md-search__input { padding-left: 2.2rem; }
+
+/* ---------- Pied de page ---------- */
+
+.md-footer-meta { background-color: var(--md-footer-bg-color--dark, #001F6E); }
+.md-footer-meta__inner { padding: 1rem .8rem; }
+.md-copyright,
+.md-copyright *,
+.md-footer-copyright,
+.md-search-result__meta,
+.md-skip { font-size: .72rem; }        /* plancher de lisibilité : 11px */
+
+
+/* ==========================================================================
+   Export PDF
+   WeasyPrint rend la page hors navigateur : il ne récupère pas les polices de
+   Google Fonts, et la mesure de lecture calée sur l'écran gâche la largeur de
+   la page. Ces règles ne concernent que l'impression et l'export.
+   ========================================================================== */
+
+@media print {
+  :root { --md-default-fg-color: #000000; }
+
+  /* Chrome du site : rien de tout cela n'a de sens dans un document imprimé, et
+     les liens de la navigation pointent vers des ancres que le PDF ne contient
+     pas — ce sont eux qui font échouer le build strict. */
+  .md-header, .md-footer, .md-sidebar, .md-nav, .md-search, .md-skip { display: none; }
+
+  /* WeasyPrint ne récupère pas Archivo depuis Google Fonts : sans cette règle
+     le PDF sort dans le serif par défaut. On demande une générique plutôt
+     qu'une police nommée, pour ne pas imposer un choix au moteur de rendu. */
+  body, .md-typeset { font-family: sans-serif; }
+
+  /* La page fait déjà la largeur d'un A4 : la mesure de lecture calée sur
+     l'écran n'a plus lieu d'être. À ne surtout pas étendre aux titres : ils
+     portent les ancres du PDF, et les toucher ici casse la navigation interne
+     (97 liens actifs tombent à 38). */
+  .md-typeset > :is(p, ul, ol, blockquote) { max-width: none; }
+
+  .md-typeset h1, .md-typeset h2, .md-typeset h3 { color: var(--pp-blue-deep); }
+
+  /* les captures gardent leur cadre, sans ombre ni coins inutiles à l'impression */
+  .md-typeset img:not(.emojione):not(.twemoji):not(.gemoji) {
+    border: 1px solid rgba(0, 0, 0, .18);
+    border-radius: 0;
+    max-width: 100%;
+  }
+
+  .md-typeset table:not([class]) { border-radius: 0; }
+  /* à l'écran les URL des cellules cassent n'importe où pour tenir dans la
+     colonne ; sur papier la page est plus large, on coupe proprement */
+  .md-typeset table:not([class]) a { word-break: normal; overflow-wrap: anywhere; }
+  .md-typeset .admonition, .md-typeset details { border-radius: 0; break-inside: avoid; }
+  .md-typeset a[target="_blank"]::after { content: ""; }   /* la flèche n'a pas de sens sur papier */
+
+  /* Couverture : le logo vient de templates/cover.html.j2 */
+  #doc-cover .cover-logo { text-align: center; margin: 4rem 0 2rem; }
+  #doc-cover .cover-logo img { height: 2.4cm; width: auto; border: 0; }
+  #doc-cover h1 { border-bottom-color: var(--pp-blue-deep) !important; }
+}
