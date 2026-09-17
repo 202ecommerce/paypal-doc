@@ -365,6 +365,11 @@ body, .md-typeset { font-feature-settings: "kern" 1, "liga" 1; }
 @media print {
   :root { --md-default-fg-color: #000000; }
 
+  /* Chrome du site : rien de tout cela n'a de sens dans un document imprimé, et
+     les liens de la navigation pointent vers des ancres que le PDF ne contient
+     pas — ce sont eux qui font échouer le build strict. */
+  .md-header, .md-footer, .md-sidebar, .md-nav, .md-search, .md-skip { display: none; }
+
   /* WeasyPrint ne récupère pas Archivo depuis Google Fonts : sans cette règle
      le PDF sort dans le serif par défaut. On demande une générique plutôt
      qu'une police nommée, pour ne pas imposer un choix au moteur de rendu. */
