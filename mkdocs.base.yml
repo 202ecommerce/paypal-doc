@@ -53,6 +53,7 @@ theme:
 
 hooks:
   - hooks/pdf-par-langue.py
+  - hooks/diag-pdf.py
 
 extra_css:
   - assets/css/paypal.css
